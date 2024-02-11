@@ -1,0 +1,15 @@
+<!-- app.component.html -->
+  <app-navbar (sampleDataClicked)="fetchSampleData()" (currentDataClicked)="fetchCurrentData()"
+    (settingsClicked)="showSettingsComponent()">
+  </app-navbar>
+
+  <div class="two-box">
+
+    <app-sidebar *ngIf="showSidebar" [deviceStreams]="deviceStreams"
+      (componentStreamSelected)="onComponentStreamSelected($event)"></app-sidebar>
+
+    <app-mainbox *ngIf="!showSettings" [selectedComponentStream]="selectedComponentStream"
+      [componentNameStream]="componentNameStream"></app-mainbox>
+
+  </div>
+  <app-settings *ngIf="showSettings" (countChanged)="updateCount($event)"></app-settings>

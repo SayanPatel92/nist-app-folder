@@ -1,0 +1,13 @@
+.two-box{
+  display: flex;
+  flex-direction: row;
+  
+}
+
+app-sidebar{
+  width:18%;
+}
+
+app-mainbox{
+  width: 82%;
+}

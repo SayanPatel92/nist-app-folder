@@ -1,0 +1,27 @@
+  /* navbar.component.css */
+.navbar {
+  background-color: #333;
+  color: #ffffff; 
+  padding: 5px; 
+}
+
+/* .navbar-brand {
+  font-size: 24px; 
+} */
+
+.navbar-nav {
+  list-style-type: none; 
+  padding: 0; 
+  display: flex; 
+  font-size:18px;
+}
+
+.nav-item {
+  cursor: pointer; 
+  margin: auto 20px;
+  padding: 4px; 
+}
+
+.nav-item:hover {
+  background-color: #5592d3; 
+}

@@ -1,0 +1,17 @@
+<div class="sidebar">
+    <ul>
+      <!-- Iterate through deviceStreams -->
+      <li *ngFor="let deviceStream of deviceStreams; let i = index">
+        <a>{{ "Device " + (i+1) }} : {{ deviceStream?.$.name}}</a>
+        <!-- Check if ComponentStream exists -->
+        <ul *ngIf="deviceStream.ComponentStream && deviceStream.ComponentStream.length > 0">
+          <!-- Iterate through ComponentStreams -->
+          <li *ngFor="let componentStream of deviceStream.ComponentStream; let j = index">
+            <a (click)="selectComponentStream(componentStream)">{{ "Component " + (j+1) }}</a>
+
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  

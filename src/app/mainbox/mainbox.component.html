@@ -1,0 +1,16 @@
+<!-- main-box.component.html -->
+<div class="main-box">
+
+  <p>{{ getObjectValues().join(' ') }}</p>
+
+  <div class="component-box" *ngIf="selectedComponentStream">
+    <ul class="info-list">
+      <li *ngFor="let keyValuePair of getObjectInfo(selectedComponentStream)" class="info-item">
+        <span class="info-key">{{ keyValuePair.key }}:</span> <span class="info-value">{{ keyValuePair.value }}</span>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="!selectedComponentStream">
+    <p>No ComponentStream selected</p>
+  </div>
+</div>
