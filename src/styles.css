@@ -1,4 +1,13 @@
-body{
+/* Apply basic reset to remove default margins and paddings */
+body {
     margin: 0;
     padding: 0;
+}
+
+/* Navigation bar styles */
+.navbar {
+    position: flex;
+    height: 38px;
+    display: flex;
+    align-items: center;
 }
