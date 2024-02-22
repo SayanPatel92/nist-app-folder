@@ -4,3 +4,12 @@
     <input class="input" type="number" id="countInput" [(ngModel)]="count">
     <button class="button" (click)="updateCount()">Update Count</button>
 </div>
+
+
+<div class="settings-container">
+    <label class="label" for="baseUrlSelect">Base Url:</label>
+    <select class="input" id="baseUrlSelect" [(ngModel)]="baseUrl" (change)="updateBaseUrl(baseUrl)">
+        <option *ngFor="let url of urlOptions" [value]="url">{{ url }}</option>
+    </select>
+    <button class="button" (click)="updateBaseUrl(baseUrl)">Update Base Url</button>
+</div>

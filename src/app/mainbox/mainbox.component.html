@@ -4,12 +4,19 @@
   <p>{{ getObjectValues().join(' ') }}</p>
 
   <div class="component-box" *ngIf="selectedComponentStream">
-    <ul class="info-list">
-      <li *ngFor="let keyValuePair of getObjectInfo(selectedComponentStream)" class="info-item">
-        <span class="info-key">{{ keyValuePair.key }}:</span> <span class="info-value">{{ keyValuePair.value }}</span>
-      </li>
-    </ul>
+
+    <div class = "categories" *ngFor="let component  of selectedComponentStream  | keyvalue">
+      <h2 class="category-heading">{{ component.key }}</h2>
+      
+      <ul class="info-list">
+        <li *ngFor="let keyValuePair of getObjectInfo(component)" class="info-item">
+          <span class="info-key">{{ keyValuePair.key }}:</span> <span class="info-value">{{ keyValuePair.value }}</span>
+        </li>
+      </ul>
+      
+    </div>
   </div>
+
   <div *ngIf="!selectedComponentStream">
     <p>No ComponentStream selected</p>
   </div>

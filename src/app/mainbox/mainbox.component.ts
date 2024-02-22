@@ -14,8 +14,8 @@ export class MainboxComponent {
     return Object.values(this.componentNameStream);
   }
 
-
   getObjectInfo(obj: any): { key: string, value: string }[] {
+    console.log(obj)
     const info: { key: string, value: string }[] = [];
     if (typeof obj === 'object' && obj !== null) {
       for (const key in obj) {

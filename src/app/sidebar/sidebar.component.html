@@ -7,7 +7,8 @@
         <ul *ngIf="deviceStream.ComponentStream && deviceStream.ComponentStream.length > 0">
           <!-- Iterate through ComponentStreams -->
           <li *ngFor="let componentStream of deviceStream.ComponentStream; let j = index">
-            <a (click)="selectComponentStream(componentStream)">{{ "Component " + (j+1) }}</a>
+            <!-- <a (click)="selectComponentStream(componentStream)">{{ "Component " + (j+1) }}</a> -->
+            <a (click)="selectComponentStream(componentStream)">{{ componentStream?.$.component + " : " + componentStream?.$.name }}</a>
 
           </li>
         </ul>

@@ -11,5 +11,6 @@ export class SidebarComponent {
 
   selectComponentStream(componentStream: any) {
     this.componentStreamSelected.emit(componentStream);
+    // console.log(componentStream)
   }
 }

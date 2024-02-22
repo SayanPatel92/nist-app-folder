@@ -12,7 +12,8 @@
   }
   
   h2 {
-    color: #a49e9e; 
+    color: #1e1a1a; 
+    border-bottom: 1px solid #1e1a1a;
   }
   
   .info-title {
@@ -29,7 +30,7 @@
   
   .info-item {
     margin-bottom: 8px;
-    border-bottom: 1px solid #ddd; 
+    border-bottom: 1px solid #403c3c8f; 
     padding-bottom: 8px;
   }
   
@@ -49,5 +50,10 @@
   
   .info-value {
     color: #d5d5d5; 
+  }
+  .categories{
+    border:1px solid #a49e9e;
+    margin:20px auto;
+    padding:20px;
   }
   

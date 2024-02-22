@@ -12,4 +12,4 @@
       [componentNameStream]="componentNameStream"></app-mainbox>
 
   </div>
-  <app-settings *ngIf="showSettings" (countChanged)="updateCount($event)"></app-settings>
+  <app-settings *ngIf="showSettings" (countChanged)="updateCount($event)" (baseUrlChanged)="updateBaseUrl($event)"></app-settings>

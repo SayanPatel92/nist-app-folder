@@ -1,78 +1,100 @@
 import { Component, OnInit } from '@angular/core';
+
 import { XmlDataFetchService } from './xml-data-fetch.service';
 import { parseString } from 'xml2js';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
-  count: number = 10;
+
+export class AppComponent {
+
+  count = 1;
+  flag = 1;
   showSidebar: boolean = true;
   showSettings: boolean = false;
-  xmlData: any;
+  url: String = `https://smstestbed.nist.gov/vds/`;
+
+  xmlData : any;
+  constructor(private xmlService: XmlDataFetchService ) {}
+
   deviceStreams: any;
-  selectedComponentStream: any;
-  componentNameStream: any;
-
-  constructor(private xmlService: XmlDataFetchService) {}
-
-  ngOnInit(): void {
-    // If you need to fetch data on component initialization
-  }
-
-  // Toggles the display of the settings component
-  showSettingsComponent(): void {
+  
+  showSettingsComponent() {
     this.showSettings = true;
-    this.showSidebar = false;
+    this.showSidebar = false; // Hide sidebar when settings is clicked
   }
+  
 
-  // Fetches sample data
   fetchSampleData(): void {
-    const url = `https://smstestbed.nist.gov/vds/sample?count=${this.count}`;
-    this.fetchXmlData(url);
+    if(this.flag === 1){
+      this.url = this.url + `sample`;
+    }
+    else
+    {
+      this.url = this.url + `sample?count=${this.count}`;
+    }
+    this.fetchXmlData(this.url);
   }
 
-  // Fetches current data
   fetchCurrentData(): void {
-    const url = 'https://smstestbed.nist.gov/vds/current';
+    const url = this.url + `current`;
     this.fetchXmlData(url);
   }
 
-  // Updates the count for fetched data
   updateCount(newCount: number): void {
     this.count = newCount;
+    this.flag = 0;
   }
 
-  // Fetches XML data and initiates parsing
-  fetchXmlData(xmlUrl: string): void {
+  updateBaseUrl(newUrl:string):void{
+    console.log(newUrl);
+    this.url  = newUrl;
+  }
+
+  fetchXmlData(xmlUrl:any):void {
     this.showSidebar = true;
     this.showSettings = false;
     this.xmlService.getXmlData(xmlUrl).subscribe(xml => {
       this.xmlData = xml;
       this.parseXml(xml);
-    }, error => {
-      console.error('Error fetching XML data:', error);
     });
   }
-
-  // Parses the fetched XML data
+    
   parseXml(xml: string): void {
     parseString(xml, (err, result) => {
       if (err) {
         console.error('Error parsing XML:', err);
-        return;
+      } else {
+        console.log('Parsed XML:', result);
+        // Access Streams array from the parsed XML
+        const streams = result.MTConnectStreams.Streams;
+        if (streams && Array.isArray(streams)) {
+          streams.forEach(stream => {
+            if (stream.DeviceStream) {
+              // If DeviceStream exists, push it to deviceStreams array
+              this.deviceStreams = stream.DeviceStream;
+            }
+          });
+        }
       }
-      console.log('Parsed XML:', result);
-      this.deviceStreams = result?.MTConnectStreams?.Streams?.[0]?.DeviceStream || [];
     });
   }
+  selectedComponentStream: any;
+  componentNameStream : any;
 
-  // Handles selection of a component stream
-  onComponentStreamSelected(componentStream: any): void {
-    const { $: componentNameStream, ...selectedComponentStream } = componentStream;
-    this.componentNameStream = componentNameStream;
-    this.selectedComponentStream = selectedComponentStream;
+  onComponentStreamSelected(componentStream: any) {
+
+  // Extract properties under componentStream.$
+  const componentStream$ = componentStream.$;
+
+  // Extract rest of the properties
+  const { $, ...rest } = componentStream;
+
+    this.componentNameStream = componentStream$;
+    this.selectedComponentStream = rest;
   }
+
 }
