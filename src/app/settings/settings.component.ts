@@ -23,7 +23,7 @@ export class SettingsComponent {
     this.countChanged.emit(this.count); // Emit the new count value
   }
 
-
+  
   updateBaseUrl(newUrl: string) {
     this.baseUrl = newUrl; // Update the base URL with the selected one
     console.log(this.baseUrl);

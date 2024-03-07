@@ -323,8 +323,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="27"
-                                    class="link-to-prism">src/app/settings/settings.component.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/settings/settings.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -383,7 +383,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateCount()</code>
+<code>updateCount(newCount: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -399,10 +399,40 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>newCount</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -535,17 +565,22 @@ export class SettingsComponent {
   @Output() countChanged &#x3D; new EventEmitter&lt;number&gt;();
   @Output() baseUrlChanged &#x3D; new EventEmitter&lt;string&gt;();
 
-  updateCount() {
-    console.log(this.count)
-    this.countChanged.emit(this.count); // Emit the new count value
+  updateCount(newCount: number) {
+    if (this.count !&#x3D;&#x3D; newCount) {
+      this.count &#x3D; newCount;
+      console.log(this.count);
+      this.countChanged.emit(this.count);
+    }
   }
-
-
+  
   updateBaseUrl(newUrl: string) {
-    this.baseUrl &#x3D; newUrl; // Update the base URL with the selected one
-    console.log(this.baseUrl);
+    if (this.baseUrl !&#x3D;&#x3D; newUrl) {
+      this.baseUrl &#x3D; newUrl;
+      console.log(this.baseUrl);
+      this.baseUrlChanged.emit(this.baseUrl); // Assuming you add this emit
+    }
   }
-}
+}  
 </code></pre>
     </div>
 

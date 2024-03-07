@@ -10,10 +10,19 @@ export class MainboxComponent {
   @Input() componentNameStream: any;
 
 
+  /**
+   * 
+   * @returns 
+   */
   getObjectValues(): string[] {
     return Object.values(this.componentNameStream);
   }
 
+  /**
+   * 
+   * @param obj 
+   * @returns 
+   */
   getObjectInfo(obj: any): { key: string, value: string }[] {
     console.log(obj)
     const info: { key: string, value: string }[] = [];
